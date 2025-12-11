@@ -4,6 +4,9 @@ using UnityEngine.AI;
 public class Enemy_Base : MonoBehaviour
 {
 
+    public int weight = 1;
+    public int minWaveNumber = 1;
+
     [SerializeField] bool treeTarget;
     [SerializeField] protected float moveSpeed = 5f;
     [SerializeField] protected float rotateSpeed = 10f;
@@ -24,7 +27,7 @@ public class Enemy_Base : MonoBehaviour
     protected void GetTarget()
     {
         if (treeTarget)
-            target = GameObject.Find("Tree").transform;
+            target = GameObject.FindWithTag("Tree").transform;
         else
             target = GameObject.FindWithTag("Player").transform;
     }

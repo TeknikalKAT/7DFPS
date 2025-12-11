@@ -13,23 +13,25 @@ public abstract class Weapon_Base : MonoBehaviour
 
     [Header("Aiming Properties")]
     [SerializeField] float aimSpeed = 8f;
-    [SerializeField] float camAimFOV;
+    [SerializeField] float camAimFOV = 50;
     [SerializeField] float camAimSpeed = 6f;
     [SerializeField] Vector3 meshAimingPos;
     Vector3 meshOriginalPosition;
 
     float camOriginalFOV;
-    Camera cam;
+    protected Camera cam;
     protected float currentBullets;
     protected float _reloadSpeed;
 
     protected InputController inputController;
     protected bool isReloading = false;
-
+    protected Animator anim;
+    bool reloadPlaying;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
         cam = Camera.main;
+        anim = GetComponent<Animator>();
         camOriginalFOV = cam.fieldOfView;
         inputController = GameObject.FindAnyObjectByType<InputController>();
         _reloadSpeed = reloadSpeed;
@@ -78,12 +80,18 @@ public abstract class Weapon_Base : MonoBehaviour
 
     void Reloading()
     {
+        if(!reloadPlaying)
+        {
+            anim.CrossFadeInFixedTime("Reload", 0.01f);
+            reloadPlaying = true;
+        }
         _reloadSpeed -= Time.deltaTime;
         if(_reloadSpeed <= 0)
         {
             currentBullets = maxBullets;
             _reloadSpeed = reloadSpeed;
             isReloading = false;
+            reloadPlaying = false;
         }
     }
 

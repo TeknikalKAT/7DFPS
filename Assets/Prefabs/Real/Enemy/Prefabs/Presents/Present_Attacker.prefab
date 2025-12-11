@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3981564005484528843}
   m_Layer: 0
   m_Name: Present_Attacker
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2542c4de5b6fa0c43b89c00c5b266638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Attacker
+  weight: 1
+  minWaveNumber: 1
   treeTarget: 0
   moveSpeed: 2.5
   rotateSpeed: 10

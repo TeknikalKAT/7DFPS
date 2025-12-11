@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8595146863697740394}
   - component: {fileID: 7587692386160469302}
   - component: {fileID: 2971304993360585337}
-  - component: {fileID: 783323623701653966}
   m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
@@ -90,26 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &783323623701653966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5482785687925783227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  damageAmount: 0
-  rayCaster: 0
-  moveSpeed: 5
-  lifeTime: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  isPlayer: 0
 --- !u!1 &6436820960744197232
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +100,7 @@ GameObject:
   - component: {fileID: 4335216869235449881}
   - component: {fileID: 5074734269327597455}
   - component: {fileID: 8347166415660995687}
+  - component: {fileID: -7619085294011712257}
   m_Layer: 7
   m_Name: EnemyProjectile
   m_TagString: Untagged
@@ -159,7 +139,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -177,11 +157,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  damageAmount: 2
-  rayCaster: 1
-  moveSpeed: 5
+  speed: 30
   lifeTime: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 65
+  damageAmount: 2
   isPlayer: 0
+--- !u!54 &-7619085294011712257
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436820960744197232}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2

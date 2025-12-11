@@ -3,57 +3,72 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField] float damageAmount;
-    [SerializeField] bool rayCaster;
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float lifeTime = 10f;
-    [SerializeField] LayerMask layerMask;
-    [SerializeField] bool isPlayer;
-    float distance = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] float speed = 60f;
+    [SerializeField] float lifeTime = 3f;
+    [SerializeField] float damageAmount = 2f;
+    [SerializeField] bool isPlayer = true;
+    [SerializeField] bool explode = false;
+    [SerializeField] GameObject explosionPrefab;
+    [SerializeField] float explodeRadius = 1f;
+    [SerializeField] LayerMask layerToHit;
+
+    Rigidbody rb;
+
+    private void Start()
     {
-        Destroy(gameObject, lifeTime);  
+        rb = GetComponent<Rigidbody>();
+        rb.linearVelocity = transform.forward * speed;
+
+        Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        distance += moveSpeed * Time.deltaTime;
-        RaycastHit hit;
-        if (rayCaster)
+        if (!collision.collider.isTrigger)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out hit, distance, layerMask, QueryTriggerInteraction.Ignore))
+            if (isPlayer)
+            {
+                if (collision.collider.GetComponent<Enemy_Health>())
+                {
+                    collision.collider.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
+                }
+            }
+            else
+            {
+                if (collision.collider.CompareTag("Player"))
+                    GameObject.FindAnyObjectByType<HealthController>().DamagePlayer(damageAmount);
+            }
+            DestroyProjectile();
+        }
+    }
+
+    void DestroyProjectile()
+    {
+        if(explode)
+        {
+            Collider[] objects = Physics.OverlapSphere(transform.position, explodeRadius, layerToHit, QueryTriggerInteraction.Ignore);
+
+            foreach (Collider obj in objects)
             {
                 if (isPlayer)
                 {
-                    if (hit.transform.GetComponent<Enemy_Health>())
+                    if (obj.GetComponent<Enemy_Health>())
                     {
-                        hit.transform.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
+                        Debug.Log(obj.name);
+                        obj.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
                     }
                 }
                 else
                 {
-                    if (hit.transform.CompareTag("Player"))
+                    if(obj.CompareTag("Player"))
                     {
                         GameObject.FindAnyObjectByType<HealthController>().DamagePlayer(damageAmount);
-                        Debug.Log("Hit Player!");
                     }
                 }
-                Destroy(gameObject);
             }
         }
-        else
-            transform.Translate(Vector3.forward * distance);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //for the child object
-        if(!rayCaster)
-        {
-            Debug.Log(other.name);
-            Destroy(transform.parent);
-        }
+        if (explosionPrefab != null)
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

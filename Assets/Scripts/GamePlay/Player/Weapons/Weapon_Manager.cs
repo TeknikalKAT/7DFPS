@@ -9,6 +9,7 @@ public class Weapon_Manager : MonoBehaviour
     [SerializeField] float switchTime = 2f;
     [Header("--UI ELEMENTS--")]
     [SerializeField] Text bulletText;
+    [SerializeField] GameObject reloadGear;
     [SerializeField] Slider laserSlider;
 
     public bool canShoot;
@@ -35,21 +36,31 @@ public class Weapon_Manager : MonoBehaviour
     void Update()
     {
         //can happen when current weapon is not reloading, so we'll check this
-        if(!currentWeapon.IsReloading() && canShoot)
-            WeaponSwitch();
+        if (!currentWeapon.IsReloading())
+        {
+            reloadGear.SetActive(false);
+            if (canShoot)
+                WeaponSwitch();
+        }
+        else
+        {
+            reloadGear.SetActive(true);
+            bulletText.text = "";
+        }
+
 
         if (canShoot)
             currentWeapon.Active();
 
         if(!currentWeapon.laser)
         {
-            bulletText.gameObject.SetActive(true);
             laserSlider.gameObject.SetActive(false);
-            bulletText.text = currentWeapon.CurrentBullets().ToString() + " / " + currentWeapon.MaxBullets();
+            if(!currentWeapon.IsReloading())
+                bulletText.text = currentWeapon.CurrentBullets().ToString();
         }
         else
         {
-            bulletText.gameObject.SetActive(false);
+            bulletText.text = "--";
             laserSlider.gameObject.SetActive(true);
             laserSlider.maxValue = currentWeapon.MaxBullets();
             laserSlider.value = currentWeapon.CurrentBullets();

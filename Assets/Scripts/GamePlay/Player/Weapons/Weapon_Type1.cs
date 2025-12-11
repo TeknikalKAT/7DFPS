@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class Weapon_Type1 : Weapon_Base
 {
+    //good for a snow ball cannon, or a milk shooter
+
     [SerializeField] GameObject[] projectiles;
     [SerializeField] Transform shootPoint;      //I may make this an array in the future
-
+    [SerializeField] ParticleSystem shootParticles;
     [Header("Normal Rate Props")]
     [SerializeField] float fireRate = 1f;
 
     [Header("Rapid Rate Props")]
     [SerializeField] float releaseRate = 0.1f;
+
 
     float _fireRate;
     float _releaseRate;
@@ -27,7 +30,10 @@ public class Weapon_Type1 : Weapon_Base
             _fireRate -= Time.deltaTime;
         }
         else
-            Fire();
+        {
+            if (inputController.isFiring && !isReloading && isActive)
+                anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        }
 
         RapidShooting();
     }
@@ -39,28 +45,27 @@ public class Weapon_Type1 : Weapon_Base
         if(_releaseRate <= 0)
         {
             _releaseRate = 0;
-            Fire();
+            if(inputController.isFiring && !isReloading && isActive)
+                anim.CrossFadeInFixedTime("Shoot", 0.01f);
         }
     }
 
-    void Fire()
+    public void Fire()
     {
-        if(inputController.isFiring && !isReloading && isActive)
+        currentBullets -= 1;
+        if (shootParticles != null)
+            shootParticles.Play();
+        if (powerLevel < projectiles.Length)
         {
-            _fireRate = fireRate;
-            _releaseRate = releaseRate;
-
-            currentBullets -= 1;
-            
-            if(powerLevel < projectiles.Length)
-            {
-                GameObject projectile = Instantiate(projectiles[powerLevel], shootPoint.position, shootPoint.rotation);
-            }
-            else
-            {
-                GameObject projectile = Instantiate(projectiles[projectiles.Length - 1], shootPoint.position, shootPoint.rotation);
-            }
+            GameObject projectile = Instantiate(projectiles[powerLevel], shootPoint.position, shootPoint.rotation);
         }
+        else
+        {
+            GameObject projectile = Instantiate(projectiles[projectiles.Length - 1], shootPoint.position, shootPoint.rotation);
+        }
+        _fireRate = fireRate;
+        _releaseRate = releaseRate;
+
     }
 
 }

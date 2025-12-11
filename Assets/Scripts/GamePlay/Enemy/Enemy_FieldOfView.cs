@@ -3,6 +3,8 @@ using UnityEngine;
 public class Enemy_FieldOfView : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] bool startTarget = true;
+    [SerializeField] bool tree = false;
     [SerializeField] GameObject fovStartPoint;
     [SerializeField] float rotateSpeed = 200f;
     [SerializeField] float maxAngle = 90f;
@@ -21,28 +23,39 @@ public class Enemy_FieldOfView : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
+        if (tree)
+            target = GameObject.FindWithTag("Tree").transform;
+        else
+            target = GameObject.FindWithTag("Player").transform;
         initialRotation = transform.localRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InFieldOfView(fovStartPoint))
+        if (startTarget)
         {
-            Vector3 direction = target.position - transform.position;
-            direction = new Vector3(xRotation ? direction.x : 0f, yRotation ? direction.y : 0f, zRotation ? direction.z : 0f);
+            if (InFieldOfView(fovStartPoint))
+            {
+                Vector3 direction = target.position - transform.position;
+                direction = new Vector3(xRotation ? direction.x : 0f, yRotation ? direction.y : 0f, zRotation ? direction.z : 0f);
 
 
-            targetRotation = Quaternion.LookRotation(direction);
+                targetRotation = Quaternion.LookRotation(direction);
 
-            lookAt = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
-            transform.rotation = lookAt;
+                lookAt = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
+                transform.rotation = lookAt;
 
-        }
-        else if (InFieldOfViewNoResetPoint(fovStartPoint))
-        {
-            return;
+            }
+            else if (InFieldOfViewNoResetPoint(fovStartPoint))
+            {
+                return;
+            }
+            else
+            {
+                targetRotation = initialRotation;
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, Time.deltaTime * rotateSpeed);
+            }
         }
         else
         {
@@ -75,5 +88,10 @@ public class Enemy_FieldOfView : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void AllowTarget(bool allow)
+    {
+        startTarget = allow;
     }
 }

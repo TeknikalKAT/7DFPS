@@ -7,6 +7,7 @@ public class Enemy_Shooter : Enemy_Base
     {
         public Transform shootPoint;
         public float fireRate;
+        public ParticleSystem shootFlash;
         [HideInInspector] public float _fireRate;
     }
 
@@ -53,6 +54,8 @@ public class Enemy_Shooter : Enemy_Base
             if(shooter._fireRate <= 0)
             {
                 GameObject projectile = Instantiate(projectilePrefab, shooter.shootPoint.position, shooter.shootPoint.rotation);
+                if(shooter.shootFlash != null)
+                    shooter.shootFlash.Play();
                 shooter._fireRate = shooter.fireRate;
             }
         }

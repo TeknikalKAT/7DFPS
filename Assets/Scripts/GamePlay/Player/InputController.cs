@@ -12,7 +12,7 @@ public class InputController : MonoBehaviour
     public bool isAiming;
     public bool forwardSwitch;
     public bool backwardSwitch;
-
+    public bool togglePause;
     // Update is called once per frame
     void Update()
     {
@@ -28,5 +28,7 @@ public class InputController : MonoBehaviour
         isAiming = Input.GetButton("Fire2");
         forwardSwitch = Input.GetKeyDown(KeyCode.E);
         backwardSwitch = Input.GetKeyDown(KeyCode.Q);
+
+        togglePause = Input.GetKeyDown(KeyCode.Escape);
     }
 }
