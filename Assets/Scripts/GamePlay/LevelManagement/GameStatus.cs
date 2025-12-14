@@ -22,6 +22,9 @@ public class GameStatus : MonoBehaviour
     public void GameComplete()
     {
         gameOver = true;
+        weaponManager.enabled = false;
+        player.enabled = false;
+        levelCompletePanel.SetActive(true);
     }
     public void GameOver()
     {

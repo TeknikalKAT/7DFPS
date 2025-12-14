@@ -95,7 +95,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.88, y: 1, z: 4.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6282143584188625481}
@@ -114,6 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 10
+  deathPrefab: {fileID: 777244486786677186, guid: 46dff5e5279f51c42b80ae08c120f369, type: 3}
+  resetTime: 1
+  maxScore: 4
+  minScore: 1
+  scoreRiser: 0.4
 --- !u!195 &1864332851796319615
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -242,15 +247,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f5325545cb17445aa99797a8d0b3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_TreeAttacker
-  weight: 1
-  minWaveNumber: 1
+  weight: 3
+  minWaveNumber: 3
   treeTarget: 1
-  moveSpeed: 1.5
+  moveSpeed: 9
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
   attackMoveSpeed: 0
   inRange: 0
-  damageAmount: 5
+  damageAmount: 0.5
   damageTime: 3
   fovs:
   - {fileID: 4887087535404682068}

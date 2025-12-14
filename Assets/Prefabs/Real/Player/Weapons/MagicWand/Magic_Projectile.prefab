@@ -9848,7 +9848,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.35, z: 2.78}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 625071496738933458}
@@ -9868,13 +9868,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 30
+  speed: 65
   lifeTime: 10
-  damageAmount: 5
+  damageAmount: 4
   isPlayer: 1
   explode: 1
   explosionPrefab: {fileID: 6717531369116182073, guid: aa5ef836101513d448199256e236ad41, type: 3}
   explodeRadius: 5
+  explosionSound: {fileID: 0}
   layerToHit:
     serializedVersion: 2
     m_Bits: 1
@@ -9938,7 +9939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a54b7082618e6e045915b26f0118ba43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOverTime
-  lifeTime: 10
+  lifeTime: 6
 --- !u!1 &7815459121704162023
 GameObject:
   m_ObjectHideFlags: 0

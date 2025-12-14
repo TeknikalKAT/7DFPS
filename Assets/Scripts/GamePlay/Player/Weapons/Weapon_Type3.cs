@@ -14,6 +14,7 @@ public class Weapon_Type3 : Weapon_Base
     [SerializeField] float releaseRate = 0.1f;
     [SerializeField] float shootRange;
     [SerializeField] float spread = 0.2f;
+    [SerializeField] GameObject hitFX;
 
     float _fireRate;
     float _releaseRate;
@@ -56,7 +57,10 @@ public class Weapon_Type3 : Weapon_Base
 
         if (muzzleFlash != null)
             muzzleFlash.Play();
-
+        if(shootSound != null)
+        {
+            weaponManager.ShootSFX(shootSound);
+        }    
         if (bulletDrops != null)
         {
             GameObject drop = Instantiate(bulletDrops, shootPoint.position, shootPoint.rotation);
@@ -72,6 +76,7 @@ public class Weapon_Type3 : Weapon_Base
                 hit.transform.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
             }
             //add hit particles
+            Instantiate(hitFX, hit.point, Quaternion.identity);
             Debug.Log(hit.transform.name);
 
         }

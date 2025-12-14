@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.88, y: 1, z: 4.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.6, y: 4.6, z: 4.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8749348281527150712}
@@ -50,7 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d64fbfb3224041857fad3437e229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  maxHealth: 10
+  maxHealth: 20
+  deathPrefab: {fileID: 777244486786677186, guid: a6f91119785205743819a224c5a54189, type: 3}
+  resetTime: 1
+  maxScore: 15
+  minScore: 10
+  scoreRiser: 0.3
 --- !u!195 &2039358593448908072
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -112,26 +117,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c1e118dc92ab348b5479b46a9cb0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Shooter
-  weight: 1
-  minWaveNumber: 1
+  weight: 7
+  minWaveNumber: 8
   treeTarget: 0
-  moveSpeed: 2.75
+  moveSpeed: 8
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
-  attackMoveSpeed: 1.5
+  attackMoveSpeed: 5.75
   inRange: 0
   shooters:
   - shootPoint: {fileID: 7995256672485670806}
-    fireRate: 1
+    fireRate: 3
     shootFlash: {fileID: 5905503625587542575}
     _fireRate: 0
   - shootPoint: {fileID: 2536826438160037628}
-    fireRate: 1.5
+    fireRate: 3.5
     shootFlash: {fileID: 568103291913090420}
     _fireRate: 0
-  minStopDistance: 10
-  maxStopDistance: 15
+  hoveringRadius: 45
+  minAlertHoverDistance: 50
+  maxAlertHoverDistance: 80
+  minHoverTime: 3
+  maxHoverTime: 5
+  hoverRotateSpeed: 0.1
   projectilePrefab: {fileID: 1850855233025450362, guid: 8a1eace6f8f899f4b9516c98bddb62ac, type: 3}
+  hoverTargetPlayer: 1
 --- !u!135 &3815953474251864339
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class Weapon_Manager : MonoBehaviour
 
     [SerializeField] Weapon_Base[] weapons;
     [SerializeField] float switchTime = 2f;
+
+    [SerializeField] AudioSource audioSource;
     [Header("--UI ELEMENTS--")]
     [SerializeField] Text bulletText;
     [SerializeField] GameObject reloadGear;
@@ -30,6 +32,7 @@ public class Weapon_Manager : MonoBehaviour
         anim = GetComponent<Animator>();
         inputController = GameObject.FindAnyObjectByType<InputController>();
         SwitchToActiveWeapon();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -116,5 +119,10 @@ public class Weapon_Manager : MonoBehaviour
         SwitchToActiveWeapon();
         yield return new WaitForSeconds(1);
         canShoot = true;
+    }
+
+    public void ShootSFX(AudioClip audio)
+    {
+        audioSource.PlayOneShot(audio);
     }
 }

@@ -331,10 +331,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7022804233172038435}
+  - component: {fileID: 2956651954119951940}
   - component: {fileID: 8586847086088984773}
   - component: {fileID: 6039358222431809596}
   - component: {fileID: 916460351315866166}
-  - component: {fileID: 2956651954119951940}
   - component: {fileID: 4220574249269313613}
   - component: {fileID: 51704525805343825}
   m_Layer: 0
@@ -354,12 +354,45 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 12.35, y: 1, z: 15.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 414583633841259715}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2956651954119951940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5326745712809094258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c1e118dc92ab348b5479b46a9cb0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Shooter
+  weight: 5
+  minWaveNumber: 3
+  treeTarget: 0
+  moveSpeed: 8
+  rotateSpeed: 10
+  rotatePoint: {fileID: 0}
+  attackMoveSpeed: 3.5
+  inRange: 0
+  shooters:
+  - shootPoint: {fileID: 1784560280169627355}
+    fireRate: 5
+    shootFlash: {fileID: 1336605902162315947}
+    _fireRate: 0
+  hoveringRadius: 50
+  minAlertHoverDistance: 50
+  maxAlertHoverDistance: 80
+  minHoverTime: 5
+  maxHoverTime: 10
+  hoverRotateSpeed: 10
+  projectilePrefab: {fileID: 6436820960744197232, guid: 6a663f12092b50e4a953b7d2afa776cc, type: 3}
+  hoverTargetPlayer: 0
 --- !u!65 &8586847086088984773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -394,6 +427,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 10
+  deathPrefab: {fileID: 5326745712809094258, guid: efd0a315e70a9274aa3b774d91d127d9, type: 3}
+  resetTime: 1
+  maxScore: 10
+  minScore: 5
+  scoreRiser: 0.4
 --- !u!195 &916460351315866166
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -416,34 +454,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2956651954119951940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5326745712809094258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c1e118dc92ab348b5479b46a9cb0e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Shooter
-  weight: 1
-  minWaveNumber: 1
-  treeTarget: 0
-  moveSpeed: 2.5
-  rotateSpeed: 10
-  rotatePoint: {fileID: 0}
-  attackMoveSpeed: 1.5
-  inRange: 0
-  shooters:
-  - shootPoint: {fileID: 1784560280169627355}
-    fireRate: 5
-    shootFlash: {fileID: 1336605902162315947}
-    _fireRate: 0
-  minStopDistance: 5
-  maxStopDistance: 10
-  projectilePrefab: {fileID: 6436820960744197232, guid: 6a663f12092b50e4a953b7d2afa776cc, type: 3}
 --- !u!135 &4220574249269313613
 SphereCollider:
   m_ObjectHideFlags: 0

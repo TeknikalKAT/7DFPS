@@ -52,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = !isPaused;
         Time.timeScale = 1;
+        weaponManager.enabled = true;
         pausePanel.SetActive(false);
         AllMenusOff();
     }

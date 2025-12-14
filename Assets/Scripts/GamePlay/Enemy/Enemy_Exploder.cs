@@ -8,12 +8,15 @@ public class Enemy_Exploder : Enemy_Base
     [SerializeField] float explosionRadius = 1f;
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] LayerMask layerToHit;
+    [SerializeField] AudioClip[] explosionSounds;
 
+    AudioSource audioSource;
     float _explodeTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
+        audioSource = GameObject.FindAnyObjectByType<Weapon_Manager>().GetComponent<AudioSource>();
         _explodeTime = explodeTime;
     }
 
@@ -49,6 +52,9 @@ public class Enemy_Exploder : Enemy_Base
                 GameObject.FindAnyObjectByType<HealthController>().DamagePlayer(damageAmount);
             }
         }
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        if(explosionSounds != null)
+            audioSource.PlayOneShot(explosionSounds[Random.Range(0, explosionSounds.Length)]);
         Destroy(gameObject);
     }
 
@@ -59,4 +65,6 @@ public class Enemy_Exploder : Enemy_Base
             inRange = true;
         }
     }
+
+
 }

@@ -16,6 +16,9 @@ public abstract class Weapon_Base : MonoBehaviour
     [SerializeField] float camAimFOV = 50;
     [SerializeField] float camAimSpeed = 6f;
     [SerializeField] Vector3 meshAimingPos;
+
+    [Space]
+    [SerializeField] protected AudioClip shootSound;
     Vector3 meshOriginalPosition;
 
     float camOriginalFOV;
@@ -27,6 +30,7 @@ public abstract class Weapon_Base : MonoBehaviour
     protected bool isReloading = false;
     protected Animator anim;
     bool reloadPlaying;
+    protected Weapon_Manager weaponManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -37,6 +41,8 @@ public abstract class Weapon_Base : MonoBehaviour
         _reloadSpeed = reloadSpeed;
         currentBullets = maxBullets;
         meshOriginalPosition = weaponMesh.transform.localPosition;
+
+        weaponManager = GameObject.FindAnyObjectByType<Weapon_Manager>();
     }
 
     // Update is called once per frame

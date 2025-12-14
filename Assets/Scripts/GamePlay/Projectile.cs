@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] bool explode = false;
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] float explodeRadius = 1f;
+    [SerializeField] GameObject explosionSound;
     [SerializeField] LayerMask layerToHit;
 
     Rigidbody rb;
@@ -18,7 +19,6 @@ public class Projectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.linearVelocity = transform.forward * speed;
-
         Destroy(gameObject, lifeTime);
     }
 
@@ -44,7 +44,11 @@ public class Projectile : MonoBehaviour
 
     void DestroyProjectile()
     {
-        if(explode)
+        if (explosionSound != null)
+        {
+            GameObject sound = Instantiate(explosionSound, transform.position, Quaternion.identity);
+        }
+        if (explode)
         {
             Collider[] objects = Physics.OverlapSphere(transform.position, explodeRadius, layerToHit, QueryTriggerInteraction.Ignore);
 
@@ -69,6 +73,7 @@ public class Projectile : MonoBehaviour
         }
         if (explosionPrefab != null)
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }

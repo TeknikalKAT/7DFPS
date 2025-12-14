@@ -7,6 +7,7 @@ public class Weapon_Type1 : Weapon_Base
     [SerializeField] GameObject[] projectiles;
     [SerializeField] Transform shootPoint;      //I may make this an array in the future
     [SerializeField] ParticleSystem shootParticles;
+
     [Header("Normal Rate Props")]
     [SerializeField] float fireRate = 1f;
 
@@ -55,6 +56,10 @@ public class Weapon_Type1 : Weapon_Base
         currentBullets -= 1;
         if (shootParticles != null)
             shootParticles.Play();
+        if (shootSound != null)
+        {
+            weaponManager.ShootSFX(shootSound);
+        }
         if (powerLevel < projectiles.Length)
         {
             GameObject projectile = Instantiate(projectiles[powerLevel], shootPoint.position, shootPoint.rotation);
