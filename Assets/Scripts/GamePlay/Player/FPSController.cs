@@ -27,7 +27,6 @@ public class FPSController : MonoBehaviour
     {
         inputController = GameObject.FindAnyObjectByType<InputController>();
         charController = GetComponent<CharacterController>();
-       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -61,6 +60,7 @@ public class FPSController : MonoBehaviour
     void Movement()
     {
         Vector3 moveDirection = transform.right * inputController.horizontal + transform.forward * inputController.vertical;
+        moveDirection.Normalize();
         charController.Move(moveDirection * moveSpeed * Time.deltaTime);
 
         if(inputController.jumping && isGrounded)

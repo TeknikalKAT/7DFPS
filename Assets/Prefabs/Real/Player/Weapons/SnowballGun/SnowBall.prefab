@@ -49,13 +49,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 50
+  speed: 60
   lifeTime: 10
-  damageAmount: 5
+  damageAmount: 8
+  treeDamageAmount: 0.5
   isPlayer: 1
   explode: 1
   explosionPrefab: {fileID: 6717531369116182073, guid: 95c6532e666752d46b6ac3ad78dcae50, type: 3}
   explodeRadius: 10
+  explosionForce: 100
+  upwardModifier: 1
   explosionSound: {fileID: 3746080241741486832, guid: 04aca2476aef16241bf29e10dfc4ac07, type: 3}
   layerToHit:
     serializedVersion: 2

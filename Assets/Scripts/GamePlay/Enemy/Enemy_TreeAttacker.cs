@@ -24,7 +24,7 @@ public class Enemy_TreeAttacker : Enemy_Base
         {
             _damageTime -= Time.deltaTime;
             agent.speed = attackMoveSpeed;
-
+            Debug.Log("I'm in range");
             if(fovs != null)
             {
                 foreach(var fov in fovs)
@@ -37,6 +37,7 @@ public class Enemy_TreeAttacker : Enemy_Base
         {
 
             agent.speed = moveSpeed;
+            Debug.Log("Not in range, so moving to be in range");
             if (fovs != null)
             {
                 foreach (var fov in fovs)
@@ -54,7 +55,7 @@ public class Enemy_TreeAttacker : Enemy_Base
 
     public override void Attack()
     {
-        target.GetComponent<Tree_HealthController>().DamageTree(damageAmount);
+        GameObject.FindAnyObjectByType<Tree_HealthController>().DamageTree(damageAmount);
         _damageTime = damageTime;
     }
 

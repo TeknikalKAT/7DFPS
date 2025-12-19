@@ -10,7 +10,22 @@ public class Enemy_FieldOfView : MonoBehaviour
     [SerializeField] float maxAngle = 90f;
     [SerializeField] float maxAngleResetPoint = 90f;
 
+    [Header("FOV ATTACKING")]
+    [SerializeField] bool shooter = true;
+    bool _canShoot = false;
+    public bool canShoot
+    {
+        get { return _canShoot; }
+        set { _canShoot = value; }
+    }
+    [SerializeField] Transform shootPoint;
+    [SerializeField] float shootTime;
+    [SerializeField] ParticleSystem shootFlash;
+    float _shootTime;
+    Enemy_Shooter enemyShooter;
+    GameObject projectile;
 
+    [Space]
     [SerializeField] bool xRotation = true;
     [SerializeField] bool yRotation = true;
     [SerializeField] bool zRotation = false;
@@ -23,6 +38,12 @@ public class Enemy_FieldOfView : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (shooter)
+        {
+            enemyShooter = GetComponentInParent<Enemy_Shooter>();
+            _shootTime = shootTime;
+            projectile = enemyShooter.Projectile();
+        }
         if (tree)
             target = GameObject.FindWithTag("Tree").transform;
         else
@@ -46,6 +67,9 @@ public class Enemy_FieldOfView : MonoBehaviour
                 lookAt = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
                 transform.rotation = lookAt;
 
+                if(shooter)
+                    Fire();
+
             }
             else if (InFieldOfViewNoResetPoint(fovStartPoint))
             {
@@ -55,6 +79,8 @@ public class Enemy_FieldOfView : MonoBehaviour
             {
                 targetRotation = initialRotation;
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, Time.deltaTime * rotateSpeed);
+                _shootTime = shootTime;
+
             }
         }
         else
@@ -93,5 +119,17 @@ public class Enemy_FieldOfView : MonoBehaviour
     public void AllowTarget(bool allow)
     {
         startTarget = allow;
+    }
+
+    void Fire()
+    {
+        _shootTime -= Time.deltaTime;
+        if(_shootTime <= 0)
+        {
+            Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+            if (shootFlash != null)
+                shootFlash.Play();
+            _shootTime = shootTime;
+        }
     }
 }

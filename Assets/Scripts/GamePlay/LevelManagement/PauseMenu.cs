@@ -25,6 +25,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (inputController.togglePause)
             TogglePause();
+
+        if (!isPaused)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState &= ~CursorLockMode.Locked;
     }
 
     void TogglePause()

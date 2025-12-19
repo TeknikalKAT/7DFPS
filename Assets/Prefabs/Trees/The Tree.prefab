@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7793415431212849515}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,9 +260,11 @@ GameObject:
   - component: {fileID: 1239552913407564249}
   - component: {fileID: 3312295125080468150}
   - component: {fileID: 9090313518365663863}
+  - component: {fileID: 4021467052097549602}
+  - component: {fileID: 2929697815467543369}
   m_Layer: 0
   m_Name: The Tree
-  m_TagString: Tree
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +327,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tree_HealthController
   maxHealth: 100
   healthSlider: {fileID: 0}
-  increaseRate: 0
+  increaseRate: 20
+--- !u!136 &4021467052097549602
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382923137405823886}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.75
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2929697815467543369
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382923137405823886}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &447473736255627033
 GameObject:
   m_ObjectHideFlags: 0
@@ -10962,9 +11014,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7503592857069674110, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6543182431389881512, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5685920554627443034, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4235036262606583941, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3279444890511050999, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3259501208398713309, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2929147749386755934, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -844069907956560676, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -548873519379707148, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 84338194236313322, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
       propertyPath: m_Name
       value: Tree_Design
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266080452287285135, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586396038046571059, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112177520629413112, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8719716232884582637, guid: 6c74ee6a2a131a743a2a6e10cdc446cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -11218,6 +11330,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3f45749284f98f24181b4892fba0633e, type: 3}
       propertyPath: m_Name
       value: Christmass_tree_indoor_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f45749284f98f24181b4892fba0633e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

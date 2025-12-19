@@ -7,7 +7,7 @@ public class Enemy_Base : MonoBehaviour
     public int weight = 1;
     public int minWaveNumber = 1;
 
-    [SerializeField] bool treeTarget;
+    [SerializeField] protected bool treeTarget;
     [SerializeField] protected float moveSpeed = 5f;
     [SerializeField] protected float rotateSpeed = 10f;
     [SerializeField] protected Transform rotatePoint;
@@ -27,7 +27,12 @@ public class Enemy_Base : MonoBehaviour
     protected void GetTarget()
     {
         if (treeTarget)
-            target = GameObject.FindWithTag("Tree").transform;
+        {
+            GameObject[] transforms = GameObject.FindGameObjectsWithTag("TreeTarget");
+            int random = Random.Range(0, transforms.Length);
+            target = transforms[random].transform;
+            Debug.Log(target.name);
+        }
         else
             target = GameObject.FindWithTag("Player").transform;
     }

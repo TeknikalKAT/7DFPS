@@ -12,6 +12,7 @@ public class HealthController : MonoBehaviour
     }
 
     [SerializeField] float maxHealth = 100;
+    [SerializeField] float increaseTime = 0.5f;
     [SerializeField] Text healthText;
 
     [Space]
@@ -20,11 +21,15 @@ public class HealthController : MonoBehaviour
     [SerializeField] HeartAnim[] curveSets;
 
     GameStatus gameStatus;
+    float _increaseTime;
+    WaveManager waveManager;
     float health;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameStatus = GetComponent<GameStatus>();
+        waveManager = GetComponent<WaveManager>();
+        _increaseTime = increaseTime;
         health = maxHealth;
     }
 
@@ -34,6 +39,22 @@ public class HealthController : MonoBehaviour
         if(health <= 0)
         {
             Die();
+        }
+        else
+        {
+            if(waveManager.waitingPeriod)
+            {
+                if(_increaseTime > 0)
+                _increaseTime -= Time.deltaTime;
+                else
+                {
+                    if ((health + 1) < maxHealth)
+                        health += 1;
+                    else
+                        health = maxHealth;
+                    _increaseTime = increaseTime;
+                }
+            }
         }
         healthText.text = health.ToString();
         HeartAnimation();

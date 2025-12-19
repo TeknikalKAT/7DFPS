@@ -19,8 +19,10 @@ public class Enemy_Attacker : Enemy_Base
         }
         else
         {
+            agent.updatePosition = false;
             agent.speed = attackMoveSpeed;
         }
+        agent.updatePosition = true;
         MoveTowardsTarget();
     }
 

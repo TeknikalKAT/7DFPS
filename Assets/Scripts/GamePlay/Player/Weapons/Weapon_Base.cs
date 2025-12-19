@@ -5,6 +5,7 @@ public abstract class Weapon_Base : MonoBehaviour
     public bool isActive;
     public int powerLevel;            //works based on XP
     public bool laser = false;
+
     [SerializeField] GameObject weaponMesh;
 
     [Header("Bullet Properties")]
@@ -16,16 +17,22 @@ public abstract class Weapon_Base : MonoBehaviour
     [SerializeField] float camAimFOV = 50;
     [SerializeField] float camAimSpeed = 6f;
     [SerializeField] Vector3 meshAimingPos;
+    [SerializeField] bool magicWand;
+    [SerializeField] Vector3 shootPointAimingPos;
+    [SerializeField] Transform wandShootPoint;
 
     [Space]
     [SerializeField] protected AudioClip shootSound;
     Vector3 meshOriginalPosition;
+    Vector3 shootPointOriginalPosition;
 
     float camOriginalFOV;
     protected Camera cam;
     protected float currentBullets;
     protected float _reloadSpeed;
 
+
+    protected bool isFiring;
     protected InputController inputController;
     protected bool isReloading = false;
     protected Animator anim;
@@ -41,6 +48,8 @@ public abstract class Weapon_Base : MonoBehaviour
         _reloadSpeed = reloadSpeed;
         currentBullets = maxBullets;
         meshOriginalPosition = weaponMesh.transform.localPosition;
+        if(magicWand)
+            shootPointOriginalPosition = wandShootPoint.localPosition;
 
         weaponManager = GameObject.FindAnyObjectByType<Weapon_Manager>();
     }
@@ -72,11 +81,15 @@ public abstract class Weapon_Base : MonoBehaviour
         if (inputController.isAiming && !isReloading)
         {
             weaponMesh.transform.localPosition = Vector3.Lerp(weaponMesh.transform.localPosition, meshAimingPos, Time.deltaTime * aimSpeed);
+            if(magicWand)
+                wandShootPoint.localPosition = Vector3.Lerp(wandShootPoint.localPosition, shootPointAimingPos, Time.deltaTime * 10f);
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, camAimFOV, Time.deltaTime * camAimSpeed);
         }
         else
         {
             weaponMesh.transform.localPosition = Vector3.Lerp(weaponMesh.transform.localPosition, meshOriginalPosition, Time.deltaTime * aimSpeed);
+            if(magicWand)
+                wandShootPoint.localPosition = Vector3.Lerp(wandShootPoint.localPosition, shootPointOriginalPosition, Time.deltaTime * 10f);
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, camOriginalFOV, Time.deltaTime * camAimSpeed);
 
         }

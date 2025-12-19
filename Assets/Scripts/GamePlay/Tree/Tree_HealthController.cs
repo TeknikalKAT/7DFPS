@@ -9,11 +9,13 @@ public class Tree_HealthController : MonoBehaviour
     [SerializeField] float increaseRate;
 
     GameStatus gameStatus;
+    WaveManager waveManager;
     float health;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameStatus = GameObject.FindAnyObjectByType<GameStatus>();
+        waveManager = GameObject.FindAnyObjectByType<WaveManager>();
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
     }
@@ -24,6 +26,16 @@ public class Tree_HealthController : MonoBehaviour
         if (health <= 0)
             GameOver();
 
+        if (waveManager.waitingPeriod)
+        {
+            if (health < maxHealth)
+            {
+                health += Time.deltaTime * increaseRate;
+            }
+            else
+                health = maxHealth;
+
+        }
         healthSlider.value = health;
     }
 

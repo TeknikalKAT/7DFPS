@@ -8,6 +8,8 @@ public class Weapon_Type1 : Weapon_Base
     [SerializeField] Transform shootPoint;      //I may make this an array in the future
     [SerializeField] ParticleSystem shootParticles;
 
+
+
     [Header("Normal Rate Props")]
     [SerializeField] float fireRate = 1f;
 
@@ -32,22 +34,28 @@ public class Weapon_Type1 : Weapon_Base
         }
         else
         {
-            if (inputController.isFiring && !isReloading && isActive)
+            if (inputController.isFiring && !isReloading && isActive && !isFiring)
+            {
+                isFiring = true;
                 anim.CrossFadeInFixedTime("Shoot", 0.01f);
+            }
         }
 
         RapidShooting();
     }
     void RapidShooting()
     {
-        if (!inputController.isFiring)
+        if (!isFiring)
             _releaseRate -= Time.deltaTime;
 
         if(_releaseRate <= 0)
         {
             _releaseRate = 0;
-            if(inputController.isFiring && !isReloading && isActive)
+            if (inputController.isFiring && !isReloading && isActive && !isFiring)
+            {
+                isFiring = true;
                 anim.CrossFadeInFixedTime("Shoot", 0.01f);
+            }
         }
     }
 
@@ -56,6 +64,8 @@ public class Weapon_Type1 : Weapon_Base
         currentBullets -= 1;
         if (shootParticles != null)
             shootParticles.Play();
+
+        isFiring = false;
         if (shootSound != null)
         {
             weaponManager.ShootSFX(shootSound);

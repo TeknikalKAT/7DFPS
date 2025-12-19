@@ -375,10 +375,10 @@ MonoBehaviour:
   weight: 5
   minWaveNumber: 3
   treeTarget: 0
-  moveSpeed: 8
+  moveSpeed: 15
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
-  attackMoveSpeed: 3.5
+  attackMoveSpeed: 14
   inRange: 0
   shooters:
   - shootPoint: {fileID: 1784560280169627355}
@@ -392,6 +392,8 @@ MonoBehaviour:
   maxHoverTime: 10
   hoverRotateSpeed: 10
   projectilePrefab: {fileID: 6436820960744197232, guid: 6a663f12092b50e4a953b7d2afa776cc, type: 3}
+  fovAttacker: 0
+  FOVs: []
   hoverTargetPlayer: 0
 --- !u!65 &8586847086088984773
 BoxCollider:
@@ -426,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d64fbfb3224041857fad3437e229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  maxHealth: 10
+  maxHealth: 14
   deathPrefab: {fileID: 5326745712809094258, guid: efd0a315e70a9274aa3b774d91d127d9, type: 3}
   resetTime: 1
   maxScore: 10
@@ -859,6 +861,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 180
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1

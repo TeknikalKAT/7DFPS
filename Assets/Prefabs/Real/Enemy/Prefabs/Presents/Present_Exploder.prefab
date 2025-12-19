@@ -207,7 +207,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.84
+  m_Radius: 8
   m_Center: {x: 0, y: 0.55, z: 0}
 --- !u!114 &1580519459736201934
 MonoBehaviour:
@@ -238,12 +238,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 720
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0.5
@@ -264,18 +264,18 @@ MonoBehaviour:
   weight: 1
   minWaveNumber: 1
   treeTarget: 0
-  moveSpeed: 5.5
+  moveSpeed: 25
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
   attackMoveSpeed: 0
   inRange: 0
   damageAmount: 5
   explodeTime: 1.5
-  explosionRadius: 10
-  explosionPrefab: {fileID: 784271042232272382, guid: fd79beaf4d4c3df47bf343d1cdfdefd3, type: 3}
+  explosionRadius: 15
+  explosionPrefab: {fileID: 8499249002805848346, guid: 7faf4dfe5fd84f24bb8b6e3b396c9fb5, type: 3}
   layerToHit:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   explosionSounds:
   - {fileID: 8300000, guid: bfe0122a9ee0fc74981f2209b1c9b3c4, type: 3}
   - {fileID: 8300000, guid: 0012624906d76b24fab30b2dcdc4d14f, type: 3}

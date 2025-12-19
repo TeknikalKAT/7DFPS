@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5810088731079500449}
@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5010,7 +5010,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 890853558414965090}
@@ -9831,6 +9831,7 @@ GameObject:
   - component: {fileID: -881452009960265950}
   - component: {fileID: 529973798106675826}
   - component: {fileID: 7544826323770838382}
+  - component: {fileID: 5747136115988864137}
   m_Layer: 7
   m_Name: Magic_Projectile
   m_TagString: Untagged
@@ -9868,17 +9869,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 65
+  speed: 40
   lifeTime: 10
   damageAmount: 4
+  treeDamageAmount: 0.5
   isPlayer: 1
-  explode: 1
+  explode: 0
   explosionPrefab: {fileID: 6717531369116182073, guid: aa5ef836101513d448199256e236ad41, type: 3}
   explodeRadius: 5
+  explosionForce: 100
+  upwardModifier: 1
   explosionSound: {fileID: 0}
   layerToHit:
     serializedVersion: 2
     m_Bits: 1
+  homingProjectile: 1
+  homingRotateSpeed: 85
+  homingDuration: 4
 --- !u!54 &-881452009960265950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9940,6 +9947,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOverTime
   lifeTime: 6
+--- !u!65 &5747136115988864137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436820960744197232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 5, z: 20}
+  m_Center: {x: 0, y: 0, z: 11.42}
 --- !u!1 &7815459121704162023
 GameObject:
   m_ObjectHideFlags: 0

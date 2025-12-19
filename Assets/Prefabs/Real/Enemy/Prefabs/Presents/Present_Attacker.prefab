@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d64fbfb3224041857fad3437e229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  maxHealth: 10
+  maxHealth: 12
   deathPrefab: {fileID: 2122821459199903371, guid: 67624af0319e3b0449a6d3ff43deaccc, type: 3}
   resetTime: 1
   maxScore: 6
@@ -87,12 +87,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 720
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0.5
@@ -113,7 +113,7 @@ MonoBehaviour:
   weight: 2
   minWaveNumber: 2
   treeTarget: 0
-  moveSpeed: 5.5
+  moveSpeed: 25
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
   attackMoveSpeed: 0

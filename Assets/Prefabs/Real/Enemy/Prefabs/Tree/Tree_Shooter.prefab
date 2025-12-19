@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256d64fbfb3224041857fad3437e229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
-  maxHealth: 20
+  maxHealth: 15
   deathPrefab: {fileID: 777244486786677186, guid: a6f91119785205743819a224c5a54189, type: 3}
   resetTime: 1
   maxScore: 15
@@ -120,10 +120,10 @@ MonoBehaviour:
   weight: 7
   minWaveNumber: 8
   treeTarget: 0
-  moveSpeed: 8
+  moveSpeed: 16
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
-  attackMoveSpeed: 5.75
+  attackMoveSpeed: 15
   inRange: 0
   shooters:
   - shootPoint: {fileID: 7995256672485670806}
@@ -141,6 +141,10 @@ MonoBehaviour:
   maxHoverTime: 5
   hoverRotateSpeed: 0.1
   projectilePrefab: {fileID: 1850855233025450362, guid: 8a1eace6f8f899f4b9516c98bddb62ac, type: 3}
+  fovAttacker: 1
+  FOVs:
+  - {fileID: 5425700442444367057}
+  - {fileID: 7655981217439581619}
   hoverTargetPlayer: 1
 --- !u!135 &3815953474251864339
 SphereCollider:
@@ -416,9 +420,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3905423599673582687, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5574781748064611584, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
       propertyPath: m_Name
       value: TreeMuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574781748064611584, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -507,9 +519,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3905423599673582687, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5574781748064611584, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
       propertyPath: m_Name
       value: TreeMuzzleFlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574781748064611584, guid: 66ebeb5b85cca374c86925d1ab883cc4, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -586,9 +606,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.61237246
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.3535534
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.61237246
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3535534
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.61237246
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.3535534
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.61237246
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3535534
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -814828637338435258, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
       propertyPath: m_Name
       value: Tree_Shooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033795090737197307, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -640,6 +724,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 7995256672485670806}
+  shootTime: 0.35
+  shootFlash: {fileID: 5905503625587542575}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -667,6 +755,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 2536826438160037628}
+  shootTime: 0.5
+  shootFlash: {fileID: 568103291913090420}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -709,6 +801,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 0
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -881452009960265950}
   - component: {fileID: 529973798106675826}
   - component: {fileID: 2680278985428399669}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: EnemySnowball_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,16 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959194ae2c41814418f195902ce31fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 50
+  speed: 80
   lifeTime: 10
   damageAmount: 5
+  treeDamageAmount: 0.5
   isPlayer: 0
   explode: 1
   explosionPrefab: {fileID: 6717531369116182073, guid: 95c6532e666752d46b6ac3ad78dcae50, type: 3}
   explodeRadius: 5
+  explosionForce: 100
+  upwardModifier: 1
+  explosionSound: {fileID: 0}
   layerToHit:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
+  homingProjectile: 0
+  homingRotateSpeed: 10
+  homingDuration: 10
 --- !u!54 &-881452009960265950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,7 +137,7 @@ GameObject:
   - component: {fileID: 625071496738933458}
   - component: {fileID: 3911106272946565675}
   - component: {fileID: 4531805452504429}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,7 +4,6 @@ public class Weapon_Type3 : Weapon_Base
 {
     //For SMG and Rifle (I think) kind of guns
     //Will be good for my cookie gunner, and for a sniper as well
-
     [SerializeField] float damageAmount;
     [SerializeField] Transform shootPoint;
     [SerializeField] ParticleSystem muzzleFlash;
@@ -13,12 +12,10 @@ public class Weapon_Type3 : Weapon_Base
     [SerializeField] float fireRate = 1f;
     [SerializeField] float releaseRate = 0.1f;
     [SerializeField] float shootRange;
-    [SerializeField] float spread = 0.2f;
     [SerializeField] GameObject hitFX;
-
+    [SerializeField] LayerMask layer;
     float _fireRate;
     float _releaseRate;
-    RaycastHit hit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -35,25 +32,32 @@ public class Weapon_Type3 : Weapon_Base
         }
         else
         {
-            if (inputController.isFiring && !isReloading && isActive)
+            if (inputController.isFiring && !isReloading && isActive && !isFiring)
+            {
+                isFiring = true;
                 anim.CrossFadeInFixedTime("Shoot", 0.01f);
+            }
         }
         RapidShooting();
     }
     void RapidShooting()
     {
-        if (!inputController.isFiring)
+        if (!isFiring)
             _releaseRate -= Time.deltaTime;
 
         if(_releaseRate <= 0)
         {
             _releaseRate = 0;
-            if(inputController.isFiring && !isReloading && isActive)
+            if (inputController.isFiring && !isReloading && isActive && !isFiring)
+            {
+                isFiring = true;
                 anim.CrossFadeInFixedTime("Shoot", 0.01f);
+            }
         }
     }
     public void Fire()
     {
+        isFiring = false;
 
         if (muzzleFlash != null)
             muzzleFlash.Play();
@@ -67,17 +71,19 @@ public class Weapon_Type3 : Weapon_Base
         }
 
         Vector3 direction = cam.transform.forward;
-        direction.x += Random.Range(-spread, spread);
-        direction.y += Random.Range(-spread, spread);
-        if (Physics.Raycast(cam.transform.position, direction, out hit, shootRange))
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, direction, out hit, shootRange, layer, QueryTriggerInteraction.Ignore))
         {
-            if (hit.transform.GetComponent<Enemy_Health>())
+            if (!hit.collider.CompareTag("Player"))
             {
-                hit.transform.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
+                if (hit.transform.GetComponent<Enemy_Health>())
+                {
+                    hit.transform.GetComponent<Enemy_Health>().DamageEnemy(damageAmount);
+                }
+
+                Instantiate(hitFX, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
             }
-            //add hit particles
-            Instantiate(hitFX, hit.point, Quaternion.identity);
-            Debug.Log(hit.transform.name);
+                Debug.Log(hit.transform.name);
 
         }
         _fireRate = fireRate;
