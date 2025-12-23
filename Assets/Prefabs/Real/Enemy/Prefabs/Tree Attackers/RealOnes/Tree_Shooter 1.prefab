@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.88, y: 1, z: 4.2}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8749348281527150712}
@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 10
   deathPrefab: {fileID: 777244486786677186, guid: 46dff5e5279f51c42b80ae08c120f369, type: 3}
+  homingTarget: {fileID: 7014129107968748600}
   resetTime: 1
   maxScore: 15
   minScore: 10
@@ -72,7 +73,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 3.85
   m_BaseOffset: 0.5
@@ -118,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Shooter
   weight: 1
-  minWaveNumber: 1
+  minWaveNumber: 3
   treeTarget: 1
   moveSpeed: 10
   rotateSpeed: 10
@@ -134,14 +135,22 @@ MonoBehaviour:
     fireRate: 3.5
     shootFlash: {fileID: 568103291913090420}
     _fireRate: 0
-  hoveringRadius: 17
-  minAlertHoverDistance: 30
-  maxAlertHoverDistance: 30
+  hoveringRadius: 0
+  minAlertHoverDistance: 40
+  maxAlertHoverDistance: 60
   minHoverTime: 3
   maxHoverTime: 5
   hoverRotateSpeed: 0.5
   projectilePrefab: {fileID: 1850855233025450362, guid: 8a1eace6f8f899f4b9516c98bddb62ac, type: 3}
+  fovAttacker: 1
+  FOVs:
+  - {fileID: 5425700442444367057}
+  - {fileID: 7655981217439581619}
+  - {fileID: 8851178493299134505}
   hoverTargetPlayer: 1
+  treeAttacker: 1
+  maxStopDistance: 60
+  minStopDistance: 30
 --- !u!135 &3815953474251864339
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -161,7 +170,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 20
+  m_Radius: 15
   m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!136 &8630991628519294677
 CapsuleCollider:
@@ -281,6 +290,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8078332076149625131}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &7837631037222395128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7014129107968748600}
+  m_Layer: 0
+  m_Name: HomingTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7014129107968748600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837631037222395128}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8749348281527150712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7999723132168940185
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +351,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8078332076149625131}
+  - {fileID: 7014129107968748600}
   m_Father: {fileID: 7727678804029761419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8045018851429843668
@@ -586,6 +627,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6942721
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.32374436
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5825634
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.27165374
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -6391042809673037252, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6942721
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.32374436
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5825634
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.27165374
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -1829002983786078602, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fb8cc85b2d633304dbbd99edc5e995a8, type: 3}
       propertyPath: m_Name
       value: Tree_Shooter
@@ -634,12 +723,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_FieldOfView
   target: {fileID: 0}
-  startTarget: 1
+  startTarget: 0
   tree: 1
   fovStartPoint: {fileID: 7999723132168940185}
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 7995256672485670806}
+  shootTime: 4
+  shootFlash: {fileID: 5905503625587542575}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -661,12 +754,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_FieldOfView
   target: {fileID: 0}
-  startTarget: 1
+  startTarget: 0
   tree: 1
   fovStartPoint: {fileID: 7999723132168940185}
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 2536826438160037628}
+  shootTime: 4.5
+  shootFlash: {fileID: 568103291913090420}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -703,12 +800,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_FieldOfView
   target: {fileID: 0}
-  startTarget: 1
+  startTarget: 0
   tree: 1
   fovStartPoint: {fileID: 7999723132168940185}
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 0
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1

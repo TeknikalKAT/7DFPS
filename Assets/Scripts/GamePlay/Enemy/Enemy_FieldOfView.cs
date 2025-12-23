@@ -67,7 +67,7 @@ public class Enemy_FieldOfView : MonoBehaviour
                 lookAt = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
                 transform.rotation = lookAt;
 
-                if(shooter)
+                if(shooter && canShoot)
                     Fire();
 
             }

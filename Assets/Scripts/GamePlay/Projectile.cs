@@ -42,10 +42,9 @@ public class Projectile : MonoBehaviour
             {
                 if (isPlayer)
                 {
-                    if (other.CompareTag("Enemy") && !gottenTarget)
+                    if (other.GetComponent<Enemy_Health>() && !gottenTarget)
                     {
-                        target = other.transform;
-                        Debug.Log(other.transform.name + " is the current target");
+                        target = other.GetComponent<Enemy_Health>().HomingTarget();
                         gottenTarget = true;
                     }
                 }

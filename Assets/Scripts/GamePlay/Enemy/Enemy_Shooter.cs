@@ -31,16 +31,27 @@ public class Enemy_Shooter : Enemy_Base
     bool gottenPoint;
 
     [SerializeField] bool hoverTargetPlayer = true;
+
+    [Header("--Tree-Attacker--")]
+    [SerializeField] bool treeAttacker = false;
+    [SerializeField] float maxStopDistance = 10f, minStopDistance = 5f;
+    //[SerializeField] bool targetTreeInRange = false;            //this is to prevent the enemy from looking away (esp. the Santa enemies) when targeting the tree
     Vector3 randomPos;
+    float stopDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
+        //if (!targetTreeInRange)
+        //    GetComponent<Enemy_FieldOfView>().enabled = false;
         hoverDistance = Random.Range(minAlertHoverDistance, maxAlertHoverDistance);
+        stopDistance = Random.Range(minStopDistance, maxStopDistance);
         base.Start();
         foreach (var shooter in shooters)
         {
             shooter._fireRate = shooter.fireRate;
         }
+        agent.stoppingDistance = stopDistance;
+
     }
 
     // Update is called once per frame
@@ -48,7 +59,7 @@ public class Enemy_Shooter : Enemy_Base
     {
         if (!target)
             GetTarget();
-
+        
         if(fovCanAttack)
         {
             foreach(var fov in FOVs)
@@ -63,6 +74,18 @@ public class Enemy_Shooter : Enemy_Base
         }
         if (inRange)
         {
+            //TREE ATTACKER PART 1 - Target (and shoot) tree when in range
+            if(treeAttacker)
+            {
+                if(FOVs != null)
+                {
+                    foreach(var fov in FOVs)
+                    {
+                        fov.AllowTarget(true);
+                    }
+                }
+            }
+            //END
             if (Vector3.Distance(transform.position, target.position) <= hoverDistance)
             {
                 isHovering = true;
@@ -98,6 +121,17 @@ public class Enemy_Shooter : Enemy_Base
         {
             isHovering = false;
             agent.speed = moveSpeed;
+            //TREE ATTACKER PART 2 - Don't target (nor shoot) tree when out of range
+            if (treeAttacker)
+            {
+                if (FOVs != null)
+                {
+                    foreach (var fov in FOVs)
+                    {
+                        fov.AllowTarget(false);
+                    }
+                }
+            }
             fovCanAttack = false;
         }
         if(!isHovering)

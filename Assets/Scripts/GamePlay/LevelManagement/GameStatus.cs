@@ -23,15 +23,19 @@ public class GameStatus : MonoBehaviour
     {
         gameOver = true;
         weaponManager.enabled = false;
+        Cursor.lockState &= ~CursorLockMode.Locked;
         player.enabled = false;
         levelCompletePanel.SetActive(true);
+
     }
     public void GameOver()
     {
         gameOver = true;
         weaponManager.enabled = false;
+        Cursor.lockState &= ~CursorLockMode.Locked;
         player.enabled = false;
         gameOverPanel.SetActive(true);
+
 
     }
 

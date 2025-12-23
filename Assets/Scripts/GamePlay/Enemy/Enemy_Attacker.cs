@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Enemy_Attacker : Enemy_Base
 {
+
+    float acceleration;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
+        acceleration = agent.acceleration;
     }
 
     // Update is called once per frame
@@ -16,13 +19,15 @@ public class Enemy_Attacker : Enemy_Base
         if(!inRange)
         {
             agent.speed = moveSpeed;
+            agent.acceleration = acceleration;
+            agent.updatePosition = true;
         }
         else
         {
-            agent.updatePosition = false;
             agent.speed = attackMoveSpeed;
+            agent.acceleration = 0;
+            agent.updatePosition = false;
         }
-        agent.updatePosition = true;
         MoveTowardsTarget();
     }
 

@@ -528,10 +528,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Survive waves of festive enemies in the Christmas village
+  m_Text: 'Defed the central Christmas tree from waves of festive robots
 
-    See how
-    long you can survive'
+    Clear
+    all waves to win - if the tree falls, it''s Game Over
+
+    If you die, Game Over'
 --- !u!222 &193966668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2757,10 +2759,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1801932813}
+  - {fileID: 1189161742}
   - {fileID: 287759828}
   - {fileID: 854093112}
   - {fileID: 1768417870}
-  - {fileID: 1189161742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4898,7 +4900,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BAD CHRISTMAS
+  m_Text: 'LAST TREE STANDING
+
+    HOLIDAY HOLDOUT'
 --- !u!222 &2013787471
 CanvasRenderer:
   m_ObjectHideFlags: 0

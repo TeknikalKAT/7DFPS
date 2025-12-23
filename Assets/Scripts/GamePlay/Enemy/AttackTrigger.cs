@@ -21,10 +21,10 @@ public class AttackTrigger : MonoBehaviour
     {
         if(playerInRange)
         {
-            if(!isAttacking)
+            attackController.NoMove();
+            if (!isAttacking)
             {
                 anim.SetTrigger("Attack");
-                attackController.NoMove();
                 isAttacking = true;
             }
         }

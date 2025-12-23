@@ -55,14 +55,17 @@ MonoBehaviour:
   treeDamageAmount: 0.5
   isPlayer: 1
   explode: 1
-  explosionPrefab: {fileID: 6717531369116182073, guid: 95c6532e666752d46b6ac3ad78dcae50, type: 3}
-  explodeRadius: 10
+  explosionPrefab: {fileID: 8499249002805848346, guid: 7faf4dfe5fd84f24bb8b6e3b396c9fb5, type: 3}
+  explodeRadius: 15
   explosionForce: 100
   upwardModifier: 1
   explosionSound: {fileID: 3746080241741486832, guid: 04aca2476aef16241bf29e10dfc4ac07, type: 3}
   layerToHit:
     serializedVersion: 2
     m_Bits: 1
+  homingProjectile: 0
+  homingRotateSpeed: 10
+  homingDuration: 10
 --- !u!54 &-881452009960265950
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 20
   deathPrefab: {fileID: 777244486786677186, guid: a6f91119785205743819a224c5a54189, type: 3}
+  homingTarget: {fileID: 2075716613232190140}
   resetTime: 1
   maxScore: 15
   minScore: 10
@@ -236,6 +237,37 @@ Transform:
   - {fileID: 2176013863112943856}
   m_Father: {fileID: 1227418088240752822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4412129234531255575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2075716613232190140}
+  m_Layer: 0
+  m_Name: HomingTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2075716613232190140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412129234531255575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8749348281527150712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5412675755801559877
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +329,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8078332076149625131}
+  - {fileID: 2075716613232190140}
   m_Father: {fileID: 7727678804029761419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8045018851429843668
@@ -664,6 +697,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -691,6 +728,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1
@@ -733,6 +774,10 @@ MonoBehaviour:
   rotateSpeed: 200
   maxAngle: 90
   maxAngleResetPoint: 90
+  shooter: 1
+  shootPoint: {fileID: 0}
+  shootTime: 0
+  shootFlash: {fileID: 0}
   xRotation: 1
   yRotation: 1
   zRotation: 1

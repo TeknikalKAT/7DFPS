@@ -5,7 +5,7 @@ public class Enemy_Health : MonoBehaviour
 {
     [SerializeField] float maxHealth = 10f;
     [SerializeField] GameObject deathPrefab;
-
+    [SerializeField] Transform homingTarget;        //for the magic (homing) projectile
     [SerializeField] float resetTime = 1f;
     [SerializeField] int maxScore = 4;
     [SerializeField] int minScore = 1;
@@ -59,5 +59,10 @@ public class Enemy_Health : MonoBehaviour
         if(deathPrefab != null)
             Instantiate(deathPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+
+    public Transform HomingTarget()
+    {
+        return homingTarget;
     }
 }

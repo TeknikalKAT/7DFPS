@@ -5,10 +5,9 @@ public class Laser : MonoBehaviour
 {
 
     [SerializeField] Transform shootPoint;
-    [SerializeField] float forwardDistance;
+    [SerializeField] float range = 50f;
     [SerializeField] float damageAmount = 0.5f;
     [SerializeField] bool isConstant = false;       //one-shot or constant laser
-    [SerializeField] float angleOffset = 0f;
     [SerializeField] float fadeDuration = 2f;       //for the one-shot laser
     [SerializeField] LayerMask layerToHit;
 
@@ -48,16 +47,12 @@ public class Laser : MonoBehaviour
     {
         laser.enabled = true;
         Vector3 startPosition = shootPoint.position;
-        Vector3 endPosition = shootPoint.forward * forwardDistance;
+        Vector3 endPosition = shootPoint.position + (shootPoint.forward * range);
 
         laser.SetPosition(0, startPosition);
         laser.SetPosition(1, endPosition);
-        Vector3 direction = (endPosition - startPosition).normalized;
-        float distance = Vector3.Distance(startPosition, endPosition);
-
         RaycastHit hit;
-
-        if(Physics.Raycast(startPosition, transform.forward, out hit, distance, layerToHit, QueryTriggerInteraction.Ignore))
+        if(Physics.Raycast(startPosition, shootPoint.forward, out hit, range, layerToHit, QueryTriggerInteraction.Ignore))
         {
             if (isConstant)
                 laser.SetPosition(1, hit.point);

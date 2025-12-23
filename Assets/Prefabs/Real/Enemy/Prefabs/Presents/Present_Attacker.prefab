@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 12
   deathPrefab: {fileID: 2122821459199903371, guid: 67624af0319e3b0449a6d3ff43deaccc, type: 3}
+  homingTarget: {fileID: 2115171449699136265}
   resetTime: 1
   maxScore: 6
   minScore: 2
@@ -90,9 +91,9 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 720
-  m_StoppingDistance: 0
+  m_StoppingDistance: 15
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0.5
@@ -110,10 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2542c4de5b6fa0c43b89c00c5b266638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Attacker
-  weight: 2
+  weight: 1
   minWaveNumber: 2
   treeTarget: 0
-  moveSpeed: 25
+  moveSpeed: 30
   rotateSpeed: 10
   rotatePoint: {fileID: 0}
   attackMoveSpeed: 0
@@ -175,7 +176,39 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 657330313723559994}
+  - {fileID: 2115171449699136265}
   m_Father: {fileID: 6260727357368078431}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6817534152189557857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115171449699136265}
+  m_Layer: 0
+  m_Name: HomingTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2115171449699136265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817534152189557857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8542095232995420862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1051017725266864081
 PrefabInstance:
@@ -441,8 +474,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 5, z: 4}
-  m_Center: {x: -3, y: 1.5, z: 0}
+  m_Size: {x: 8.31, y: 5, z: 3.25}
+  m_Center: {x: -4.71, y: 1.5, z: 0}
 --- !u!4 &657330313723559994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e65f7234f3a8caa419cf2858d08ed548, type: 3}
@@ -530,11 +563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2418267433482122028, guid: a524e0862adf5a644ad10fee893c4b1b, type: 3}
       propertyPath: ColorModule.gradient.minMaxState
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418267433482122028, guid: a524e0862adf5a644ad10fee893c4b1b, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2418267433482122028, guid: a524e0862adf5a644ad10fee893c4b1b, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar

@@ -30,10 +30,12 @@ public class Enemy_Exploder : Enemy_Base
         {
             _explodeTime -= Time.deltaTime;
             agent.speed = attackMoveSpeed;
+            agent.updatePosition = false;
         }
         else
         {
             agent.speed = moveSpeed;
+            agent.updatePosition = true;
         }
         MoveTowardsTarget();
 
