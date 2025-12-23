@@ -5,6 +5,7 @@ public abstract class Weapon_Base : MonoBehaviour
     public bool isActive;
     public int powerLevel;            //works based on XP
     public bool laser = false;
+    public string weaponName;
 
     [SerializeField] GameObject weaponMesh;
 

@@ -58,7 +58,7 @@ MonoBehaviour:
   explodeRadius: 5
   explosionForce: 100
   upwardModifier: 1
-  explosionSound: {fileID: 0}
+  explosionSound: {fileID: 3746080241741486832, guid: 04aca2476aef16241bf29e10dfc4ac07, type: 3}
   layerToHit:
     serializedVersion: 2
     m_Bits: 257

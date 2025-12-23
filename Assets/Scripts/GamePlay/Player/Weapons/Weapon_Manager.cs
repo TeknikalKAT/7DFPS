@@ -10,9 +10,11 @@ public class Weapon_Manager : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
     [Header("--UI ELEMENTS--")]
+    [SerializeField] Text weaponName;
     [SerializeField] Text bulletText;
     [SerializeField] GameObject reloadGear;
     [SerializeField] Slider laserSlider;
+    
 
     public bool canShoot;
 
@@ -68,6 +70,8 @@ public class Weapon_Manager : MonoBehaviour
             laserSlider.maxValue = currentWeapon.MaxBullets();
             laserSlider.value = currentWeapon.CurrentBullets();
         }
+
+        weaponName.text = currentWeapon.weaponName;
     }
 
 

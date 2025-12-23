@@ -10,6 +10,7 @@ public class Enemy_FieldOfView : MonoBehaviour
     [SerializeField] float maxAngle = 90f;
     [SerializeField] float maxAngleResetPoint = 90f;
 
+
     [Header("FOV ATTACKING")]
     [SerializeField] bool shooter = true;
     bool _canShoot = false;
@@ -127,6 +128,10 @@ public class Enemy_FieldOfView : MonoBehaviour
         if(_shootTime <= 0)
         {
             Instantiate(projectile, shootPoint.position, shootPoint.rotation);
+            if(enemyShooter.shootSound != null)
+            {
+                enemyShooter.PlaySFX(enemyShooter.shootSound);
+            }
             if (shootFlash != null)
                 shootFlash.Play();
             _shootTime = shootTime;

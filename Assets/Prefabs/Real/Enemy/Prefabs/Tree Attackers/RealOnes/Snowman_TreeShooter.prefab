@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 4220574249269313613}
   - component: {fileID: 51704525805343825}
   m_Layer: 0
-  m_Name: Snowman_Shooter 1
+  m_Name: Snowman_TreeShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,6 +399,7 @@ MonoBehaviour:
   treeAttacker: 1
   maxStopDistance: 60
   minStopDistance: 30
+  shootSound: {fileID: 0}
 --- !u!65 &8586847086088984773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -448,7 +449,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5326745712809094258}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.05
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 5
   avoidancePriority: 50

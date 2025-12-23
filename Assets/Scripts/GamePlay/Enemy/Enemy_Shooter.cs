@@ -36,6 +36,10 @@ public class Enemy_Shooter : Enemy_Base
     [SerializeField] bool treeAttacker = false;
     [SerializeField] float maxStopDistance = 10f, minStopDistance = 5f;
     //[SerializeField] bool targetTreeInRange = false;            //this is to prevent the enemy from looking away (esp. the Santa enemies) when targeting the tree
+
+    [Header("--Sound--")]
+    AudioSource audioSource;
+    public AudioClip shootSound;
     Vector3 randomPos;
     float stopDistance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,6 +47,7 @@ public class Enemy_Shooter : Enemy_Base
     {
         //if (!targetTreeInRange)
         //    GetComponent<Enemy_FieldOfView>().enabled = false;
+        audioSource = GetComponent<AudioSource>();
         hoverDistance = Random.Range(minAlertHoverDistance, maxAlertHoverDistance);
         stopDistance = Random.Range(minStopDistance, maxStopDistance);
         base.Start();
@@ -178,6 +183,10 @@ public class Enemy_Shooter : Enemy_Base
                 if (shooter.shootFlash != null)
                     shooter.shootFlash.Play();
                 shooter._fireRate = shooter.fireRate;
+                if (shootSound != null)
+                {
+                    PlaySFX(shootSound);
+                }
             }
         }
     }
@@ -214,5 +223,10 @@ public class Enemy_Shooter : Enemy_Base
     public GameObject Projectile()  //used by the FOVs
     {
         return projectilePrefab;
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
