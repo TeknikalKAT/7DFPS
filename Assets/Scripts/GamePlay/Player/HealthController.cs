@@ -30,6 +30,14 @@ public class HealthController : MonoBehaviour
         gameStatus = GetComponent<GameStatus>();
         waveManager = GetComponent<WaveManager>();
         _increaseTime = increaseTime;
+        if(waveManager.WaveNumber()  == 5)
+        {
+            maxHealth = 450;
+        }
+        else if(waveManager.WaveNumber() == 10)
+        {
+            maxHealth = 750;
+        }
         health = maxHealth;
     }
 

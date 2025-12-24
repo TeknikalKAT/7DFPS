@@ -204,4 +204,9 @@ public class WaveManager : MonoBehaviour
         if(!gameStatus.Over())
             gameStatus.GameComplete();
     }
+
+    public int WaveNumber()
+    {
+        return waveNumber;
+    }
 }
