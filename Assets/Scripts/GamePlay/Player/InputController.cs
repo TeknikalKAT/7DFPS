@@ -26,8 +26,10 @@ public class InputController : MonoBehaviour
         reload = Input.GetKeyDown(KeyCode.R);
         isFiring = Input.GetButton("Fire1");
         isAiming = Input.GetButton("Fire2");
-        forwardSwitch = Input.GetKeyDown(KeyCode.E);
-        backwardSwitch = Input.GetKeyDown(KeyCode.Q);
+
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        forwardSwitch = Input.GetKeyDown(KeyCode.E) || scroll < 0f;
+        backwardSwitch = Input.GetKeyDown(KeyCode.Q) || scroll > 0f;
 
         togglePause = Input.GetKeyDown(KeyCode.Escape);
     }

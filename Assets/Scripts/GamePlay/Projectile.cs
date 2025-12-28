@@ -83,16 +83,19 @@ public class Projectile : MonoBehaviour
             rb.linearVelocity = transform.forward * speed;
             if (gottenTarget)
             {
-                if (homingDuration > 0)
+                if (target != null)
                 {
-                    homingDuration -= Time.deltaTime;
+                    if (homingDuration > 0)
+                    {
+                        homingDuration -= Time.deltaTime;
 
 
-                    Vector3 direction = target.position - transform.position;
+                        Vector3 direction = target.position - transform.position;
 
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                        Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-                    rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * homingRotateSpeed));
+                        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * homingRotateSpeed));
+                    }
                 }
             }
         }

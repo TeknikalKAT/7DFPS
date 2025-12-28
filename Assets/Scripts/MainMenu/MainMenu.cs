@@ -1,12 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject[] menus;
+    [SerializeField] GameObject fadeOut;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        fadeOut.SetActive(false);
         AllMenusOff();
     }
 
@@ -32,12 +35,12 @@ public class MainMenu : MonoBehaviour
     public void WaveNumber(int waveNumber)
     {
         PlayerPrefs.SetInt("Wave number", waveNumber);
-        StartGame();
+        Time.timeScale = 1;
+        StartCoroutine(FadeOut());
     }
 
     public void StartGame()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("SampleScene");
     }
 
@@ -45,6 +48,13 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-           
+
+    IEnumerator FadeOut()
+    {
+        fadeOut.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        StartGame();
+    }
+
 
 }

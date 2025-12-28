@@ -30,11 +30,11 @@ public class HealthController : MonoBehaviour
         gameStatus = GetComponent<GameStatus>();
         waveManager = GetComponent<WaveManager>();
         _increaseTime = increaseTime;
-        if(waveManager.WaveNumber()  == 5)
+        if(PlayerPrefs.GetInt("Wave number") == 5)
         {
-            maxHealth = 450;
+            maxHealth = 350;
         }
-        else if(waveManager.WaveNumber() == 10)
+        else if(PlayerPrefs.GetInt("Wave number") == 10)
         {
             maxHealth = 750;
         }
@@ -79,7 +79,7 @@ public class HealthController : MonoBehaviour
 
     void HeartAnimation()
     {
-        if(health >= 75)                            //100
+        if(health >= 0.75 * maxHealth)                            //100
         {
             heartAnim.duration = curveSets[0].duration;
             colorAnim.duration = curveSets[0].duration;
@@ -87,7 +87,7 @@ public class HealthController : MonoBehaviour
             colorAnim.pulseColor = curveSets[0].pulseColor;
             heartAnim.scaleFactor = curveSets[0].scaleFactor;
         }
-        else if(health < 75 && health >= 50)        //75
+        else if(health < 0.75 * maxHealth && health >= 0.50 * maxHealth)        //75
         {
             heartAnim.duration = curveSets[1].duration;
             colorAnim.duration = curveSets[1].duration;
@@ -95,7 +95,7 @@ public class HealthController : MonoBehaviour
             colorAnim.pulseColor = curveSets[1].pulseColor;
             heartAnim.scaleFactor = curveSets[1].scaleFactor;
         }
-        else if(health < 50 && health >= 25)        //50
+        else if(health < 0.50 * maxHealth && health >= 0.25 * maxHealth)        //50
         {
             heartAnim.duration = curveSets[2].duration;
             colorAnim.duration = curveSets[2].duration;
@@ -103,7 +103,7 @@ public class HealthController : MonoBehaviour
             colorAnim.pulseColor = curveSets[2].pulseColor;
             heartAnim.scaleFactor = curveSets[2].scaleFactor;
         }
-        else if(health < 25 && health >= 10)        //25
+        else if(health < 0.25 * maxHealth && health >= 0.10 * maxHealth)        //25
         {
             heartAnim.duration = curveSets[3].duration;
             colorAnim.duration = curveSets[3].duration;
